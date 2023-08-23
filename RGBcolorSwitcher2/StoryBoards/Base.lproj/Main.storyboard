@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mGb-sZ-HSF">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
@@ -8,6 +8,44 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="0rj-gv-07s">
+            <objects>
+                <navigationController id="mGb-sZ-HSF" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="al7-pB-QRr">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="gpc-sm-KG0" kind="relationship" relationship="rootViewController" id="LCu-mz-Uyl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cAB-bq-cTd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-578" y="-30"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="hHn-fR-3yG">
+            <objects>
+                <viewController id="gpc-sm-KG0" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZF0-4D-IvH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Su1-4B-xd2"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="RcD-2K-WvA">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="pencil.and.outline" catalog="system" id="HJ1-Ks-bPB">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="fullScreen" id="FUw-to-9of"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wvP-UR-pVR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="135" y="-31"/>
+        </scene>
         <!--Settings View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -114,7 +152,7 @@
                             <constraint firstItem="7xU-9f-j6g" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="HDn-1A-w06"/>
                             <constraint firstItem="fK4-yT-1sH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="QJa-HS-lGW"/>
                             <constraint firstItem="fK4-yT-1sH" firstAttribute="top" secondItem="7xU-9f-j6g" secondAttribute="bottom" constant="53.5" id="RQD-Qo-BeN"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="7xU-9f-j6g" secondAttribute="top" id="bbD-S9-QfN"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="7xU-9f-j6g" secondAttribute="top" constant="-20" id="bbD-S9-QfN"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fK4-yT-1sH" secondAttribute="trailing" constant="22.5" id="jsa-dG-n0G"/>
                         </constraints>
                     </view>
@@ -130,10 +168,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="2.5751072961373391"/>
+            <point key="canvasLocation" x="866" y="-31"/>
         </scene>
     </scenes>
     <resources>
+        <image name="pencil.and.outline" catalog="system" width="128" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

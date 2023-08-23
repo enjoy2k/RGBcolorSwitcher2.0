@@ -56,12 +56,10 @@
 		8857D61A2A3762FD00AA6AC7 /* RGBcolorSwitcher2 */ = {
 			isa = PBXGroup;
 			children = (
-				8857D61B2A3762FD00AA6AC7 /* AppDelegate.swift */,
-				8857D61D2A3762FD00AA6AC7 /* SceneDelegate.swift */,
+				9DFCE1662A96496700128832 /* App */,
 				8857D61F2A3762FD00AA6AC7 /* ViewController.swift */,
 				9DFCE1652A96490400128832 /* StoryBoards */,
 				8857D6242A3762FE00AA6AC7 /* Assets.xcassets */,
-				8857D6292A3762FE00AA6AC7 /* Info.plist */,
 			);
 			path = RGBcolorSwitcher2;
 			sourceTree = "<group>";
@@ -73,6 +71,16 @@
 				8857D6262A3762FE00AA6AC7 /* LaunchScreen.storyboard */,
 			);
 			path = StoryBoards;
+			sourceTree = "<group>";
+		};
+		9DFCE1662A96496700128832 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				8857D61B2A3762FD00AA6AC7 /* AppDelegate.swift */,
+				8857D61D2A3762FD00AA6AC7 /* SceneDelegate.swift */,
+				8857D6292A3762FE00AA6AC7 /* Info.plist */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,7 +304,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = RGBcolorSwitcher2/Info.plist;
+				INFOPLIST_FILE = RGBcolorSwitcher2/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -326,7 +334,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = RGBcolorSwitcher2/Info.plist;
+				INFOPLIST_FILE = RGBcolorSwitcher2/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

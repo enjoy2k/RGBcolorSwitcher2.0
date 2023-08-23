@@ -59,12 +59,20 @@
 				8857D61B2A3762FD00AA6AC7 /* AppDelegate.swift */,
 				8857D61D2A3762FD00AA6AC7 /* SceneDelegate.swift */,
 				8857D61F2A3762FD00AA6AC7 /* ViewController.swift */,
-				8857D6212A3762FD00AA6AC7 /* Main.storyboard */,
+				9DFCE1652A96490400128832 /* StoryBoards */,
 				8857D6242A3762FE00AA6AC7 /* Assets.xcassets */,
-				8857D6262A3762FE00AA6AC7 /* LaunchScreen.storyboard */,
 				8857D6292A3762FE00AA6AC7 /* Info.plist */,
 			);
 			path = RGBcolorSwitcher2;
+			sourceTree = "<group>";
+		};
+		9DFCE1652A96490400128832 /* StoryBoards */ = {
+			isa = PBXGroup;
+			children = (
+				8857D6212A3762FD00AA6AC7 /* Main.storyboard */,
+				8857D6262A3762FE00AA6AC7 /* LaunchScreen.storyboard */,
+			);
+			path = StoryBoards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

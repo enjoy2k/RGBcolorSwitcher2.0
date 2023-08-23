@@ -59,7 +59,7 @@
 				9DFCE1662A96496700128832 /* App */,
 				8857D61F2A3762FD00AA6AC7 /* ViewController.swift */,
 				9DFCE1652A96490400128832 /* StoryBoards */,
-				8857D6242A3762FE00AA6AC7 /* Assets.xcassets */,
+				9DFCE1672A96499200128832 /* Sources */,
 			);
 			path = RGBcolorSwitcher2;
 			sourceTree = "<group>";
@@ -81,6 +81,14 @@
 				8857D6292A3762FE00AA6AC7 /* Info.plist */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		9DFCE1672A96499200128832 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				8857D6242A3762FE00AA6AC7 /* Assets.xcassets */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

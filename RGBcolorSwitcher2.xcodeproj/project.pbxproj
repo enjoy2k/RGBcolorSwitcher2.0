@@ -13,6 +13,7 @@
 		8857D6232A3762FD00AA6AC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8857D6212A3762FD00AA6AC7 /* Main.storyboard */; };
 		8857D6252A3762FE00AA6AC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8857D6242A3762FE00AA6AC7 /* Assets.xcassets */; };
 		8857D6282A3762FE00AA6AC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8857D6262A3762FE00AA6AC7 /* LaunchScreen.storyboard */; };
+		9DFCE16A2A9CC1F000128832 /* ColorfulViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFCE1692A9CC1F000128832 /* ColorfulViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		8857D6242A3762FE00AA6AC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8857D6272A3762FE00AA6AC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8857D6292A3762FE00AA6AC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9DFCE1692A9CC1F000128832 /* ColorfulViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorfulViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				8857D61F2A3762FD00AA6AC7 /* SettingsViewController.swift */,
+				9DFCE1692A9CC1F000128832 /* ColorfulViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -170,6 +173,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DFCE16A2A9CC1F000128832 /* ColorfulViewController.swift in Sources */,
 				8857D6202A3762FD00AA6AC7 /* SettingsViewController.swift in Sources */,
 				8857D61C2A3762FD00AA6AC7 /* AppDelegate.swift in Sources */,
 				8857D61E2A3762FD00AA6AC7 /* SceneDelegate.swift in Sources */,

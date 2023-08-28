@@ -19,6 +19,10 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var greenSlider: UISlider!
     @IBOutlet weak var blueSlider: UISlider!
     
+    @IBOutlet var redTF: UITextField!
+    @IBOutlet var greenTF: UITextField!
+    @IBOutlet var blueTF: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mainView.layer.cornerRadius = 10
@@ -41,7 +45,9 @@ class SettingsViewController: UIViewController {
         }
     }
     
-    
+    @IBAction func doneButtonPressed() {
+        
+    }
     
     private func setColor() {
         mainView.backgroundColor = UIColor(

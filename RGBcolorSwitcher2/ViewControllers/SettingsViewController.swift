@@ -41,10 +41,13 @@ class SettingsViewController: UIViewController {
         switch sender {
         case redSlider:
             redLabel.text = makeCuttedString(from: redSlider)
+            redTF.text = makeCuttedString(from: redSlider)
         case greenSlider:
             greenLabel.text = makeCuttedString(from: greenSlider)
+            greenTF.text = makeCuttedString(from: greenSlider)
         default:
             blueLabel.text = makeCuttedString(from: blueSlider)
+            blueTF.text = makeCuttedString(from: blueSlider)
         }
     }
     

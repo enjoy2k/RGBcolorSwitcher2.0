@@ -23,6 +23,8 @@ class SettingsViewController: UIViewController {
     @IBOutlet var greenTF: UITextField!
     @IBOutlet var blueTF: UITextField!
     
+    var biggieColorView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mainView.layer.cornerRadius = 10
@@ -30,6 +32,7 @@ class SettingsViewController: UIViewController {
         setColor()
         
         setValue(for: redLabel, greenLabel, blueLabel)
+        setTFValues(for: redTF, greenTF, blueTF)
     }
     
     @IBAction func sliderAction(_ sender: UISlider) {
@@ -37,11 +40,11 @@ class SettingsViewController: UIViewController {
         
         switch sender {
         case redSlider:
-            redLabel.text = string(from: redSlider)
+            redLabel.text = makeCuttedString(from: redSlider)
         case greenSlider:
-            greenLabel.text = string(from: greenSlider)
+            greenLabel.text = makeCuttedString(from: greenSlider)
         default:
-            blueLabel.text = string(from: blueSlider)
+            blueLabel.text = makeCuttedString(from: blueSlider)
         }
     }
     
@@ -62,16 +65,29 @@ class SettingsViewController: UIViewController {
         labels.forEach { label in
             switch label {
             case redLabel:
-                redLabel.text = string(from: redSlider)
+                redLabel.text = makeCuttedString(from: redSlider)
             case greenLabel:
-                greenLabel.text = string(from: redSlider)
+                greenLabel.text = makeCuttedString(from: redSlider)
             default:
-                blueLabel.text = string(from: redSlider)
+                blueLabel.text = makeCuttedString(from: redSlider)
             }
         }
     }
     
-    private func string(from slider: UISlider) -> String {
+    private func setTFValues(for tFs: UITextField...) {
+        tFs.forEach { tF in
+            switch tF {
+            case redTF:
+                redTF.text = makeCuttedString(from: redSlider)
+            case greenTF:
+                greenTF.text = makeCuttedString(from: redSlider)
+            default:
+                blueTF.text = makeCuttedString(from: redSlider)
+            }
+        }
+    }
+    
+    private func makeCuttedString(from slider: UISlider) -> String {
         String(format: "%.2f", slider.value)
     }
 }

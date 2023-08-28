@@ -6,9 +6,14 @@
 //
 
 import UIKit
+import Foundation
+
+protocol SettingsViewControllerDelegate: AnyObject {
+    func setColorForBigView(with color: UIColor)
+}
 
 class ColorfulViewController: UIViewController {
-
+    
     @IBOutlet var bigieView: UIView!
     
     override func viewDidLoad() {
@@ -17,12 +22,14 @@ class ColorfulViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let settingsVC = segue.destination as? SettingsViewController else { return }
-        settingsVC.biggieColorView = bigieView
-        
-        
+        settingsVC.delegate = self
+//        settingsVC.biggieColorView.backgroundColor = bigieView.backgroundColor
     }
     
-    
-    @IBAction func unwind(for unwindSegue: UIStoryboardSegue) {}
+}
 
+extension ColorfulViewController: SettingsViewControllerDelegate {
+    func setColorForBigView(with color: UIColor) {
+        bigieView.backgroundColor = color
+    }
 }

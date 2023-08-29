@@ -29,8 +29,13 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mainView.layer.cornerRadius = 10
-        
         mainView.backgroundColor = initialBackgroundColor
+        
+        
+        
+        redTF.delegate = self
+        greenTF.delegate = self
+        blueTF.delegate = self
         
         setColor()
         
@@ -96,5 +101,13 @@ class SettingsViewController: UIViewController {
     
     private func makeCuttedString(from slider: UISlider) -> String {
         String(format: "%.2f", slider.value)
+    }
+}
+
+extension SettingsViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard let newValue = textField.text else { return }
+        guard let numberValue = Int(newValue) else { return }
+        
     }
 }

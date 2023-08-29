@@ -30,7 +30,7 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         mainView.layer.cornerRadius = 10
         
-        mainView.backgroundColor = biggieColorView.backgroundColor
+        biggieColorView.backgroundColor = mainView.backgroundColor
         
         setColor()
         

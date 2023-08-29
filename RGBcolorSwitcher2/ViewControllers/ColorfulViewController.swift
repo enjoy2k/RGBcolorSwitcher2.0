@@ -18,12 +18,13 @@ class ColorfulViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bigieView.backgroundColor = UIColor.green
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let settingsVC = segue.destination as? SettingsViewController else { return }
         settingsVC.delegate = self
-//        settingsVC.biggieColorView.backgroundColor = bigieView.backgroundColor
+        settingsVC.mainView.backgroundColor = bigieView.backgroundColor
     }
     
 }

@@ -14,23 +14,21 @@ protocol SettingsViewControllerDelegate: AnyObject {
 
 class ColorfulViewController: UIViewController {
     
-    @IBOutlet var bigieView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        bigieView.backgroundColor = UIColor.green
+        view.backgroundColor = UIColor.green
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let settingsVC = segue.destination as? SettingsViewController else { return }
         settingsVC.delegate = self
-        settingsVC.mainView.backgroundColor = bigieView.backgroundColor
+        settingsVC.initialBackgroundColor = view.backgroundColor
     }
-    
 }
 
 extension ColorfulViewController: SettingsViewControllerDelegate {
     func setColorForBigView(with color: UIColor) {
-        bigieView.backgroundColor = color
+        view.backgroundColor = color
     }
 }

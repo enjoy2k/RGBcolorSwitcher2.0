@@ -23,14 +23,14 @@ class SettingsViewController: UIViewController {
     @IBOutlet var greenTF: UITextField!
     @IBOutlet var blueTF: UITextField!
     
-    var biggieColorView: UIView!
+    var initialBackgroundColor: UIColor!
     var delegate: SettingsViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         mainView.layer.cornerRadius = 10
         
-        biggieColorView.backgroundColor = mainView.backgroundColor
+        mainView.backgroundColor = initialBackgroundColor
         
         setColor()
         
@@ -56,7 +56,7 @@ class SettingsViewController: UIViewController {
     
     @IBAction func doneButtonPressed() {
         delegate?.setColorForBigView(with: mainView.backgroundColor ?? UIColor.white)
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true)
     }
     
     private func setColor() {
@@ -98,6 +98,3 @@ class SettingsViewController: UIViewController {
         String(format: "%.2f", slider.value)
     }
 }
-
-
-// Передать цвет обратно уже через делегирование

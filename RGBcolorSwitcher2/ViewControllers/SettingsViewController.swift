@@ -33,6 +33,8 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        mainView.layer.cornerRadius = 10
+        
         //        mainView.backgroundColor = initialBackgroundColor
         redSlider.value = initialRedValue
         greenSlider.value = initialGreenValue
@@ -47,11 +49,6 @@ class SettingsViewController: UIViewController {
         redTF.inputAccessoryView = toolBar
         greenTF.inputAccessoryView = toolBar          // Дублируется код. Объединить
         blueTF.inputAccessoryView = toolBar
-        
-        addingTollBarToKeyBoardTF(with: redTF, greenTF, blueTF)
-
-        mainView.layer.cornerRadius = 10
-        
         
         redTF.delegate = self
         greenTF.delegate = self
@@ -78,25 +75,21 @@ class SettingsViewController: UIViewController {
    @objc private func doneButtonTapped() {
          redTF.resignFirstResponder()
     }
-    
-    private func addingTollBarToKeyBoardTF(with textField: UITextField) {
-        let toolBarr = UIToolbar()
-        textField.inputAccessoryView = toolBarr
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+//
+//    private func addingTollBarToKeyBoardTF(with textFields: UITextField...) {
+//        let toolBarr = UIToolbar()
+//        textFields.forEach { TF in
+//            switch TF {
+//            case redTF:
+//                redTF.inputAccessoryView =
+//            case greenTF:
+//                greenTF.inputAccessoryView = toolBarr
+//            default:
+//                blueTF.inputAccessoryView = toolBarr
+//            }
+//        }
+//    }
+
     private func setColor() {
         mainView.backgroundColor = UIColor(
             red: CGFloat(redSlider.value),
@@ -133,10 +126,13 @@ extension SettingsViewController: UITextFieldDelegate {
         
         if textField == redTF {
             redSlider.value = Float(numberValue)
+            redLabel.text = String(newValue)
         } else if textField == greenTF {
             greenSlider.value = Float(numberValue)
+            updateLabelsAndTextFields(for: greenSlider)
         } else {
             blueSlider.value = Float(numberValue)
+            updateLabelsAndTextFields(for: blueSlider)
         }
 
     }

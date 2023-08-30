@@ -34,7 +34,7 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         
         let toolBar = UIToolbar()
-//        toolBar.sizeToFit()
+        toolBar.sizeToFit()
         let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneButtonTapped))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         
@@ -42,17 +42,15 @@ class SettingsViewController: UIViewController {
         
         redTF.inputAccessoryView = toolBar
 
-        
-        
         mainView.layer.cornerRadius = 10
         
         redSlider.value = initialRedValue
         greenSlider.value = initialGreenValue
         blueSlider.value = initialBlueValue
         
-//        redTF.delegate = self
-//        greenTF.delegate = self
-//        blueTF.delegate = self
+        redTF.delegate = self
+        greenTF.delegate = self
+        blueTF.delegate = self
         
         mainView.backgroundColor = initialBackgroundColor
         setColor()

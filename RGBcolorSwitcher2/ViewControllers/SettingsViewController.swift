@@ -24,45 +24,57 @@ class SettingsViewController: UIViewController {
     @IBOutlet var blueTF: UITextField!
     
     var initialBackgroundColor: UIColor!
+    var initialRedValue: Float = 0.0
+    var initialGreenValue: Float = 0.0
+    var initialBlueValue: Float = 0.0
+    
     var delegate: SettingsViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mainView.layer.cornerRadius = 10
-        mainView.backgroundColor = initialBackgroundColor
         
+        let toolBar = UIToolbar()
+//        toolBar.sizeToFit()
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneButtonTapped))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         
+        toolBar.items = [flexibleSpace, doneButton]
         
-        redTF.delegate = self
-        greenTF.delegate = self
-        blueTF.delegate = self
-        
-//        setColor()
-        mainView.backgroundColor = initialBackgroundColor
-        
-        setValue(for: redLabel, greenLabel, blueLabel)
+        redTF.inputAccessoryView = toolBar
 
+        
+        
+        mainView.layer.cornerRadius = 10
+        
+        redSlider.value = initialRedValue
+        greenSlider.value = initialGreenValue
+        blueSlider.value = initialBlueValue
+        
+//        redTF.delegate = self
+//        greenTF.delegate = self
+//        blueTF.delegate = self
+        
+        mainView.backgroundColor = initialBackgroundColor
+        setColor()
+
+        updateLabelsAndTextFields(for: redSlider)
+        updateLabelsAndTextFields(for: greenSlider)
+        updateLabelsAndTextFields(for: blueSlider)
+        
     }
     
     @IBAction func sliderAction(_ sender: UISlider) {
         setColor()
-        
-        switch sender {
-        case redSlider:
-            redLabel.text = makeCuttedString(from: redSlider)
-            redTF.text = makeCuttedString(from: redSlider)
-        case greenSlider:
-            greenLabel.text = makeCuttedString(from: greenSlider)
-            greenTF.text = makeCuttedString(from: greenSlider)
-        default:
-            blueLabel.text = makeCuttedString(from: blueSlider)
-            blueTF.text = makeCuttedString(from: blueSlider)
-        }
+        updateLabelsAndTextFields(for: sender)
     }
     
     @IBAction func doneButtonPressed() {
         delegate?.setColorForBigView(with: mainView.backgroundColor ?? UIColor.white)
         dismiss(animated: true)
+    }
+    
+   @objc private func doneButtonTapped() {
+         redTF.resignFirstResponder()
     }
     
     private func setColor() {
@@ -73,22 +85,21 @@ class SettingsViewController: UIViewController {
             alpha: 1
         )
     }
-    
-    private func setValue(for labels: UILabel...) {
-        labels.forEach { label in
-            switch label {
-            case redLabel:
-                redLabel.text = makeCuttedString(from: redSlider)
-                redTF.text = makeCuttedString(from: redSlider)
-            case greenLabel:
-                greenLabel.text = makeCuttedString(from: greenSlider)
-                greenTF.text = makeCuttedString(from: greenSlider)
+    private func updateLabelsAndTextFields(for slider: UISlider) {
+            let valueString = makeCuttedString(from: slider)
+            
+            switch slider {
+            case redSlider:
+                redLabel.text = valueString
+                redTF.text = valueString
+            case greenSlider:
+                greenLabel.text = valueString
+                greenTF.text = valueString
             default:
-                blueLabel.text = makeCuttedString(from: blueSlider)
-                blueTF.text = makeCuttedString(from: blueSlider)
+                blueLabel.text = valueString
+                blueTF.text = valueString
             }
         }
-    }
     
     private func makeCuttedString(from slider: UISlider) -> String {
         String(format: "%.2f", slider.value)
@@ -98,7 +109,18 @@ class SettingsViewController: UIViewController {
 extension SettingsViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let newValue = textField.text else { return }
-//        guard let numberValue = Int(newValue) else { return }
+        guard let numberValue = Int(newValue) else { return }
         
+        if textField == redTF {
+            redSlider.value = Float(numberValue)
+        } else if textField == greenTF {
+            greenSlider.value = Float(numberValue)
+        } else {
+            blueSlider.value = Float(numberValue)
+        }
+
     }
 }
+
+// скрывать клавиатуру тапом по экрану.
+// Снизу добавить тулбар, в него поместить decimalPad, потом к ней добавить кнопку Done

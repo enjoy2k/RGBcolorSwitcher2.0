@@ -37,10 +37,11 @@ class SettingsViewController: UIViewController {
         greenTF.delegate = self
         blueTF.delegate = self
         
-        setColor()
+//        setColor()
+        mainView.backgroundColor = initialBackgroundColor
         
         setValue(for: redLabel, greenLabel, blueLabel)
-        setTFValues(for: redTF, greenTF, blueTF)
+
     }
     
     @IBAction func sliderAction(_ sender: UISlider) {
@@ -78,23 +79,13 @@ class SettingsViewController: UIViewController {
             switch label {
             case redLabel:
                 redLabel.text = makeCuttedString(from: redSlider)
-            case greenLabel:
-                greenLabel.text = makeCuttedString(from: redSlider)
-            default:
-                blueLabel.text = makeCuttedString(from: redSlider)
-            }
-        }
-    }
-    
-    private func setTFValues(for tFs: UITextField...) {
-        tFs.forEach { tF in
-            switch tF {
-            case redTF:
                 redTF.text = makeCuttedString(from: redSlider)
-            case greenTF:
-                greenTF.text = makeCuttedString(from: redSlider)
+            case greenLabel:
+                greenLabel.text = makeCuttedString(from: greenSlider)
+                greenTF.text = makeCuttedString(from: greenSlider)
             default:
-                blueTF.text = makeCuttedString(from: redSlider)
+                blueLabel.text = makeCuttedString(from: blueSlider)
+                blueTF.text = makeCuttedString(from: blueSlider)
             }
         }
     }
@@ -107,7 +98,7 @@ class SettingsViewController: UIViewController {
 extension SettingsViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let newValue = textField.text else { return }
-        guard let numberValue = Int(newValue) else { return }
+//        guard let numberValue = Int(newValue) else { return }
         
     }
 }

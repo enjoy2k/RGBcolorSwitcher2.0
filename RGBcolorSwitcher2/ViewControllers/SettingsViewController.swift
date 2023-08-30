@@ -23,36 +23,40 @@ class SettingsViewController: UIViewController {
     @IBOutlet var greenTF: UITextField!
     @IBOutlet var blueTF: UITextField!
     
-    var initialBackgroundColor: UIColor!
-    var initialRedValue: Float = 0.0
-    var initialGreenValue: Float = 0.0
-    var initialBlueValue: Float = 0.0
+//    var initialBackgroundColor: UIColor!
+    var initialRedValue: Float!
+    var initialGreenValue: Float!
+    var initialBlueValue: Float!
     
     var delegate: SettingsViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //        mainView.backgroundColor = initialBackgroundColor
+        redSlider.value = initialRedValue
+        greenSlider.value = initialGreenValue
+        blueSlider.value = initialBlueValue
+        
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneButtonTapped))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        
         toolBar.items = [flexibleSpace, doneButton]
         
         redTF.inputAccessoryView = toolBar
+        greenTF.inputAccessoryView = toolBar          // Дублируется код. Объединить
+        blueTF.inputAccessoryView = toolBar
+        
+        addingTollBarToKeyBoardTF(with: redTF, greenTF, blueTF)
 
         mainView.layer.cornerRadius = 10
         
-        redSlider.value = initialRedValue
-        greenSlider.value = initialGreenValue
-        blueSlider.value = initialBlueValue
         
         redTF.delegate = self
         greenTF.delegate = self
         blueTF.delegate = self
         
-        mainView.backgroundColor = initialBackgroundColor
         setColor()
 
         updateLabelsAndTextFields(for: redSlider)
@@ -74,6 +78,24 @@ class SettingsViewController: UIViewController {
    @objc private func doneButtonTapped() {
          redTF.resignFirstResponder()
     }
+    
+    private func addingTollBarToKeyBoardTF(with textField: UITextField) {
+        let toolBarr = UIToolbar()
+        textField.inputAccessoryView = toolBarr
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     private func setColor() {
         mainView.backgroundColor = UIColor(

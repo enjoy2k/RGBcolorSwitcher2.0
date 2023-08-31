@@ -22,7 +22,6 @@ class ColorfulViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let settingsVC = segue.destination as? SettingsViewController else { return }
         settingsVC.delegate = self
-//        settingsVC.initialBackgroundColor = view.backgroundColor
         settingsVC.initialRedValue = Float(view.backgroundColor?.rgbComponents?.red ?? 0.0)
         settingsVC.initialGreenValue = Float(view.backgroundColor?.rgbComponents?.green ?? 0.0)
         settingsVC.initialBlueValue = Float(view.backgroundColor?.rgbComponents?.blue ?? 0.0)

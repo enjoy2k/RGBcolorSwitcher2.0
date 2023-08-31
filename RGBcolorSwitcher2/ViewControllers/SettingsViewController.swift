@@ -23,7 +23,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet var greenTF: UITextField!
     @IBOutlet var blueTF: UITextField!
     
-//    var initialBackgroundColor: UIColor!
+
     var initialRedValue: Float!
     var initialGreenValue: Float!
     var initialBlueValue: Float!
@@ -35,7 +35,6 @@ class SettingsViewController: UIViewController {
         
         mainView.layer.cornerRadius = 10
         
-        //        mainView.backgroundColor = initialBackgroundColor
         redSlider.value = initialRedValue
         greenSlider.value = initialGreenValue
         blueSlider.value = initialBlueValue
@@ -45,8 +44,8 @@ class SettingsViewController: UIViewController {
         let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneButtonTapped))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         toolBar.items = [flexibleSpace, doneButton]
-        
-        redTF.inputAccessoryView = toolBar
+
+        redTF.inputAccessoryView = toolBar            // Открывает тулбар на определённой строке
         greenTF.inputAccessoryView = toolBar          // Дублируется код. Объединить
         blueTF.inputAccessoryView = toolBar
         
@@ -60,6 +59,8 @@ class SettingsViewController: UIViewController {
         updateLabelsAndTextFields(for: greenSlider)
         updateLabelsAndTextFields(for: blueSlider)
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        view.addGestureRecognizer(tapGesture)
     }
     
     @IBAction func sliderAction(_ sender: UISlider) {
@@ -75,22 +76,8 @@ class SettingsViewController: UIViewController {
    @objc private func doneButtonTapped() {
          redTF.resignFirstResponder()
     }
-//
-//    private func addingTollBarToKeyBoardTF(with textFields: UITextField...) {
-//        let toolBarr = UIToolbar()
-//        textFields.forEach { TF in
-//            switch TF {
-//            case redTF:
-//                redTF.inputAccessoryView =
-//            case greenTF:
-//                greenTF.inputAccessoryView = toolBarr
-//            default:
-//                blueTF.inputAccessoryView = toolBarr
-//            }
-//        }
-//    }
 
-    private func setColor() {
+    private func setColor() {                                      // Устанавливает цвет вью от положения слайдера
         mainView.backgroundColor = UIColor(
             red: CGFloat(redSlider.value),
             green: CGFloat(greenSlider.value),
@@ -98,7 +85,7 @@ class SettingsViewController: UIViewController {
             alpha: 1
         )
     }
-    private func updateLabelsAndTextFields(for slider: UISlider) {
+    private func updateLabelsAndTextFields(for slider: UISlider) { // Обновляет Лэйблы и ТФы
             let valueString = makeCuttedString(from: slider)
             
             switch slider {
@@ -114,9 +101,13 @@ class SettingsViewController: UIViewController {
             }
         }
     
-    private func makeCuttedString(from slider: UISlider) -> String {
+    private func makeCuttedString(from slider: UISlider) -> String { // Делает Стринги из слайдеров
         String(format: "%.2f", slider.value)
     }
+    
+    @objc private func handleTap() {
+            view.endEditing(true)
+        }
 }
 
 extension SettingsViewController: UITextFieldDelegate {
@@ -129,14 +120,12 @@ extension SettingsViewController: UITextFieldDelegate {
             redLabel.text = String(newValue)
         } else if textField == greenTF {
             greenSlider.value = Float(numberValue)
-            updateLabelsAndTextFields(for: greenSlider)
+            redLabel.text = String(newValue)
         } else {
             blueSlider.value = Float(numberValue)
-            updateLabelsAndTextFields(for: blueSlider)
+            blueLabel.text = String(newValue)
         }
 
     }
 }
 
-// скрывать клавиатуру тапом по экрану.
-// Снизу добавить тулбар, в него поместить decimalPad, потом к ней добавить кнопку Done

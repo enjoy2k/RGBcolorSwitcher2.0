@@ -125,20 +125,20 @@
                                                 <rect key="frame" x="-2" y="0.0" width="214" height="31"/>
                                                 <color key="tintColor" systemColor="systemRedColor"/>
                                                 <connections>
-                                                    <action selector="sliderAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="uFL-Rh-pa2"/>
+                                                    <action selector="rgbSlider:" destination="BYZ-38-t0r" eventType="valueChanged" id="uFL-Rh-pa2"/>
                                                 </connections>
                                             </slider>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="hlk-Rb-kb2">
                                                 <rect key="frame" x="-2" y="54.000000000000028" width="214" height="31"/>
                                                 <color key="tintColor" systemColor="systemGreenColor"/>
                                                 <connections>
-                                                    <action selector="sliderAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="v8O-nJ-Woo"/>
+                                                    <action selector="rgbSlider:" destination="BYZ-38-t0r" eventType="valueChanged" id="v8O-nJ-Woo"/>
                                                 </connections>
                                             </slider>
                                             <slider opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="sj6-lp-6XV">
                                                 <rect key="frame" x="-2" y="108.00000000000003" width="214" height="26"/>
                                                 <connections>
-                                                    <action selector="sliderAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="qd8-Cq-AIe"/>
+                                                    <action selector="rgbSlider:" destination="BYZ-38-t0r" eventType="valueChanged" id="qd8-Cq-AIe"/>
                                                 </connections>
                                             </slider>
                                         </subviews>
@@ -154,6 +154,9 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="BYZ-38-t0r" id="TBq-Dv-LLO"/>
+                                                </connections>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wpc-6C-A3g">
                                                 <rect key="frame" x="0.0" y="50.000000000000028" width="45" height="33"/>
@@ -162,6 +165,9 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="BYZ-38-t0r" id="uVh-fk-I8Y"/>
+                                                </connections>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iE2-e7-uzT">
                                                 <rect key="frame" x="0.0" y="100.00000000000003" width="45" height="33"/>
@@ -170,6 +176,9 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="BYZ-38-t0r" id="mJs-lv-qd4"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                         <constraints>

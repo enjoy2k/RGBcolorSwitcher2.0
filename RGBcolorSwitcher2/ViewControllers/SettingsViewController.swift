@@ -23,60 +23,50 @@ class SettingsViewController: UIViewController {
     @IBOutlet var greenTF: UITextField!
     @IBOutlet var blueTF: UITextField!
     
-
-    var initialRedValue: Float!
-    var initialGreenValue: Float!
-    var initialBlueValue: Float!
-    
     var delegate: SettingsViewControllerDelegate?
+    var viewColor: UIColor!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         mainView.layer.cornerRadius = 10
+        mainView.backgroundColor = viewColor
+      
+        setSliders()
+        setValue(for: redLabel, greenLabel, blueLabel)
+        setValue(for: redTF, greenTF, blueTF)
         
-        redSlider.value = initialRedValue
-        greenSlider.value = initialGreenValue
-        blueSlider.value = initialBlueValue
         
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneButtonTapped))
-        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        toolBar.items = [flexibleSpace, doneButton]
-
-        redTF.inputAccessoryView = toolBar            // Открывает тулбар на определённой строке
-        greenTF.inputAccessoryView = toolBar          // Дублируется код. Объединить
-        blueTF.inputAccessoryView = toolBar
         
-        redTF.delegate = self
-        greenTF.delegate = self
-        blueTF.delegate = self
-        
-        setColor()
-
-        updateLabelsAndTextFields(for: redSlider)
-        updateLabelsAndTextFields(for: greenSlider)
-        updateLabelsAndTextFields(for: blueSlider)
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapDone))
         view.addGestureRecognizer(tapGesture)
     }
     
-    @IBAction func sliderAction(_ sender: UISlider) {
+    @IBAction func rgbSlider(_ sender: UISlider) {
+        
+        switch sender {
+        case redSlider:
+            setValue(for: redTF)
+            setValue(for: redLabel)
+        case greenSlider:
+            setValue(for: greenTF)
+            setValue(for: greenLabel)
+        default:
+            setValue(for: blueTF)
+            setValue(for: blueLabel)
+        }
         setColor()
-        updateLabelsAndTextFields(for: sender)
     }
     
     @IBAction func doneButtonPressed() {
-        delegate?.setColorForBigView(with: mainView.backgroundColor ?? UIColor.white)
+        delegate?.setColorForBigView(with: mainView.backgroundColor ?? .white)
         dismiss(animated: true)
     }
+}
     
-   @objc private func doneButtonTapped() {
-         redTF.resignFirstResponder()
-    }
-
+//    MARK: - Private Methods
+extension SettingsViewController {
+    
     private func setColor() {                                      // Устанавливает цвет вью от положения слайдера
         mainView.backgroundColor = UIColor(
             red: CGFloat(redSlider.value),
@@ -85,47 +75,101 @@ class SettingsViewController: UIViewController {
             alpha: 1
         )
     }
-    private func updateLabelsAndTextFields(for slider: UISlider) { // Обновляет Лэйблы и ТФы
-            let valueString = makeCuttedString(from: slider)
-            
-            switch slider {
-            case redSlider:
-                redLabel.text = valueString
-                redTF.text = valueString
-            case greenSlider:
-                greenLabel.text = valueString
-                greenTF.text = valueString
-            default:
-                blueLabel.text = valueString
-                blueTF.text = valueString
+    
+    private func setValue(for labels: UILabel...) {
+        labels.forEach { label in
+            switch label {
+            case redLabel: label.text = makeCuttedString(from: redSlider)
+            case greenLabel: label.text = makeCuttedString(from: greenSlider)
+            default: label.text = makeCuttedString(from: blueSlider)
             }
         }
+    }
     
-    private func makeCuttedString(from slider: UISlider) -> String { // Делает Стринги из слайдеров
+    private func setValue(for textFields: UITextField...) {
+        textFields.forEach { textField in
+            switch textField {
+            case redTF: textField.text = makeCuttedString(from: redSlider)
+            case greenTF: textField.text = makeCuttedString(from: greenSlider)
+            default: textField.text = makeCuttedString(from: blueSlider)
+            }
+        }
+    }
+    private func setSliders() {
+        let ciColor = CIColor(color: viewColor)
+        
+        redSlider.value = Float(ciColor.red)
+        greenSlider.value = Float(ciColor.green)
+        blueSlider.value = Float(ciColor.blue)
+    }
+    
+    
+    private func makeCuttedString(from slider: UISlider) -> String {
         String(format: "%.2f", slider.value)
     }
     
-    @objc private func handleTap() {
-            view.endEditing(true)
-        }
-}
-
-extension SettingsViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let newValue = textField.text else { return }
-        guard let numberValue = Int(newValue) else { return }
-        
-        if textField == redTF {
-            redSlider.value = Float(numberValue)
-            redLabel.text = String(newValue)
-        } else if textField == greenTF {
-            greenSlider.value = Float(numberValue)
-            redLabel.text = String(newValue)
-        } else {
-            blueSlider.value = Float(numberValue)
-            blueLabel.text = String(newValue)
-        }
-
+    @objc private func didTapDone() {
+        view.endEditing(true)
+    }
+    
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default)
+        alert.addAction(okAction)
+        present(alert, animated: true)
     }
 }
+
+
+// MARK: - UITextFieldDelegate
+    extension SettingsViewController: UITextFieldDelegate {
+        
+        override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+            super.touchesBegan(touches, with: event)
+            view.endEditing(true)
+        }
+        
+        func textFieldDidEndEditing(_ textField: UITextField) {
+            
+            guard let text = textField.text else { return }
+            
+            if let currentValue = Float(text) {
+                switch textField {
+                case redTF:
+                    redSlider.setValue(currentValue, animated: true)
+                    setValue(for: redLabel)
+                case greenTF:
+                    greenSlider.setValue(currentValue, animated: true)
+                    setValue(for: greenLabel)
+                default:
+                    greenSlider.setValue(currentValue, animated: true)
+                    setValue(for: blueLabel)
+                }
+                setColor()
+                return
+            }
+            
+            showAlert(title: "Wrong format!", message: "Please enter correct value")
+        }
+        
+        func textFieldDidBeginEditing(_ textField: UITextField) {
+            let keyBoardToolBar = UIToolbar()
+            keyBoardToolBar.sizeToFit()
+            textField.inputAccessoryView = keyBoardToolBar
+            
+            let doneButton = UIBarButtonItem(
+                barButtonSystemItem: .done,
+                target: self,
+                action: #selector(didTapDone)
+                )
+            
+            let flexibleButton = UIBarButtonItem(
+                barButtonSystemItem: .flexibleSpace,
+                target: nil,
+                action: nil
+                )
+            
+            keyBoardToolBar.items = [flexibleButton, doneButton]
+        }
+    }
 

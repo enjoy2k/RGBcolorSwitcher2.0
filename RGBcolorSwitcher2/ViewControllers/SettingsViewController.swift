@@ -35,11 +35,6 @@ class SettingsViewController: UIViewController {
         setSliders()
         setValue(for: redLabel, greenLabel, blueLabel)
         setValue(for: redTF, greenTF, blueTF)
-        
-        
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapDone))
-        view.addGestureRecognizer(tapGesture)
     }
     
     @IBAction func rgbSlider(_ sender: UISlider) {
@@ -67,7 +62,7 @@ class SettingsViewController: UIViewController {
 //    MARK: - Private Methods
 extension SettingsViewController {
     
-    private func setColor() {                                      // Устанавливает цвет вью от положения слайдера
+    private func setColor() {
         mainView.backgroundColor = UIColor(
             red: CGFloat(redSlider.value),
             green: CGFloat(greenSlider.value),
@@ -172,4 +167,5 @@ extension SettingsViewController {
             keyBoardToolBar.items = [flexibleButton, doneButton]
         }
     }
+
 

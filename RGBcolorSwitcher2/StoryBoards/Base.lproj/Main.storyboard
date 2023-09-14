@@ -153,7 +153,7 @@
                                                     <constraint firstAttribute="height" constant="33" id="eob-bj-qjC"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="BYZ-38-t0r" id="TBq-Dv-LLO"/>
                                                 </connections>
@@ -164,7 +164,7 @@
                                                     <constraint firstAttribute="height" constant="33" id="BoQ-SN-gKS"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="BYZ-38-t0r" id="uVh-fk-I8Y"/>
                                                 </connections>
@@ -175,7 +175,7 @@
                                                     <constraint firstAttribute="height" constant="33" id="5zg-E4-crb"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="BYZ-38-t0r" id="mJs-lv-qd4"/>
                                                 </connections>
@@ -188,7 +188,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wdt-sG-xqo">
-                                <rect key="frame" x="127.66666666666669" y="706" width="138" height="50"/>
+                                <rect key="frame" x="127.66666666666669" y="684.66666666666663" width="138" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="138" id="Lwz-7U-9xI"/>
                                 </constraints>
@@ -206,7 +206,6 @@
                         <color key="backgroundColor" systemColor="systemTealColor"/>
                         <constraints>
                             <constraint firstItem="7xU-9f-j6g" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5Jv-9S-RtY"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="wdt-sG-xqo" secondAttribute="bottom" constant="96" id="CFC-gY-g4E"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7xU-9f-j6g" secondAttribute="trailing" constant="20" id="F9q-FA-GHR"/>
                             <constraint firstItem="7xU-9f-j6g" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="HDn-1A-w06"/>
                             <constraint firstItem="fK4-yT-1sH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="QJa-HS-lGW"/>
@@ -214,6 +213,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="7xU-9f-j6g" secondAttribute="top" constant="-55" id="bbD-S9-QfN"/>
                             <constraint firstItem="wdt-sG-xqo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="v4K-7j-dTf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fK4-yT-1sH" secondAttribute="trailing" constant="20" id="xQa-rr-QEj"/>
+                            <constraint firstItem="wdt-sG-xqo" firstAttribute="top" secondItem="sj6-lp-6XV" secondAttribute="bottom" constant="320" id="yei-oH-fFn"/>
                         </constraints>
                     </view>
                     <connections>

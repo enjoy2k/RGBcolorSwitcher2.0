@@ -23,10 +23,13 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var greenSlider: UISlider!
     @IBOutlet weak var blueSlider: UISlider!
 
+    var viewColor: UIColor!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         mainView.layer.cornerRadius = 10
+        
+        mainView.backgroundColor = viewColor
         
         setColor()
         

@@ -33,7 +33,8 @@ class SettingsViewController: UIViewController {
         
 //        setColor()
         
-        setValue(for: <#T##UISlider#>)
+        setValue(for: redLabel, greenLabel, blueLabel)
+        setValue(for: redTF, greenTF, blueTF)
         
     }
     
@@ -66,21 +67,26 @@ class SettingsViewController: UIViewController {
         )
     }
     
-    private func setValue(for slider: UISlider) {
-        let newValues = string(from: slider)
-        
-            switch slider {
-            case redSlider:
-                redLabel.text = newValues
-                redTF.text = newValues
-            case greenSlider:
-                greenLabel.text = newValues
-                greenTF.text = newValues
-            default:
-                blueLabel.text = newValues
-                blueTF.text = newValues
+    private func setValue(for labels: UILabel...) {
+        labels.forEach { label in
+            
+            switch label {
+            case redLabel: label.text = string(from: redSlider)
+            case greenLabel: label.text = string(from: greenSlider)
+            default: label.text = string(from: blueSlider)
             }
         }
+    }
+    private func setValue(for textFields: UITextField...) {
+        textFields.forEach { textField in
+            
+            switch textField {
+            case redTF: textField.text = string(from: redSlider)
+            case greenTF: textField.text = string(from: greenSlider)
+            default: textField.text = string(from: blueSlider)
+            }
+        }
+    }
     
     private func string(from slider: UISlider) -> String {
         String(format: "%.2f", slider.value)

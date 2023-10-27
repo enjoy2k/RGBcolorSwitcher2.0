@@ -22,6 +22,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var redSlider: UISlider!
     @IBOutlet weak var greenSlider: UISlider!
     @IBOutlet weak var blueSlider: UISlider!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

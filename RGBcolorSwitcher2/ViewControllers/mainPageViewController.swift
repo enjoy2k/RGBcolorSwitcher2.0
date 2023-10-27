@@ -15,14 +15,14 @@ class mainPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        biggieView.backgroundColor = UIColor.white
 
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let settingsVC = segue.destination as? SettingsViewController else { return }
         
-        settingsVC.mainView.backgroundColor = biggieView.backgroundColor
+//        settingsVC.mainView.backgroundColor = biggieView.backgroundColor
     }
-
-
 }

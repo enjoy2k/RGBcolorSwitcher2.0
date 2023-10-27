@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol SettingsViewControllerDelegate {
+    func sendColorBack()
+}
+
 class mainPageViewController: UIViewController {
     
     
@@ -20,5 +24,14 @@ class mainPageViewController: UIViewController {
         guard let settingsVC = segue.destination as? SettingsViewController else { return }
         
         settingsVC.viewColor = view.backgroundColor
+        settingsVC.delegate = self
     }
+}
+
+extension mainPageViewController: SettingsViewControllerDelegate {
+    func sendColorBack() {
+        print("hello")
+        
+    }
+    
 }

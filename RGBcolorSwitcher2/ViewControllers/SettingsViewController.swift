@@ -24,6 +24,8 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var blueSlider: UISlider!
 
     var viewColor: UIColor!
+    var delegate: SettingsViewControllerDelegate!
+    var color: UIColor!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,12 +33,20 @@ class SettingsViewController: UIViewController {
         
         mainView.backgroundColor = viewColor
         
-//        setColor()
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapGest))
+        view.addGestureRecognizer(tapGestureRecognizer)
+        
+//        Здесь нужно реализовать метод, который устанавливает слайдеры согласно цвету на мэйнВью
         
         setValue(for: redLabel, greenLabel, blueLabel)
         setValue(for: redTF, greenTF, blueTF)
         
     }
+    
+    @objc private func tapGest() {
+        view.endEditing(true)
+    }
+    
     
     @IBAction func sliderAction(_ sender: UISlider) {
         setColor()
@@ -56,7 +66,7 @@ class SettingsViewController: UIViewController {
 
     @IBAction func doneButtonPressed() {
         
-//        На экан настроек цвет передаётся через Сигвей - prepare.
+        delegate.sendColorBack()
 //        А обратно, по нажатии done - делегируя.
 
     }
@@ -95,3 +105,15 @@ class SettingsViewController: UIViewController {
         String(format: "%.2f", slider.value)
     }
 }
+
+
+
+
+extension SettingsViewController: UITextFieldDelegate {
+   func textFieldDidEndEditing(_ textField: UITextField) {
+        
+    }
+}
+
+
+//  Сделать клавиатуру с тулбаром и кнопокой done

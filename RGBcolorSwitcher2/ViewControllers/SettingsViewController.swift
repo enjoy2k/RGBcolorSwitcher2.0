@@ -36,16 +36,6 @@ class SettingsViewController: UIViewController {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapGest))
         view.addGestureRecognizer(tapGestureRecognizer)
         
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
-        
-        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(tapGest))
-        let flexibleSpace = UIBarButtonItem(systemItem: .flexibleSpace)
-        toolBar.items = [flexibleSpace, doneButton]
-        redTF.inputAccessoryView = toolBar
-        greenTF.inputAccessoryView = toolBar
-        blueTF.inputAccessoryView = toolBar
-        
 //        Здесь нужно реализовать метод, который устанавливает слайдеры согласно цвету на мэйнВью
         
         setValueL(for: redLabel, greenLabel, blueLabel)
@@ -115,13 +105,35 @@ class SettingsViewController: UIViewController {
 }
 
 
-
+// MARK: Методы клавы
 
 extension SettingsViewController: UITextFieldDelegate {
-   func textFieldDidEndEditing(_ textField: UITextField) {
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        textField.inputAccessoryView = toolBar
         
+        let doneButton = UIBarButtonItem(
+            title: "Done",
+            style: .done,
+            target: self,
+            action: #selector(tapGest)
+        )
+        let flexibleSpace = UIBarButtonItem(systemItem: .flexibleSpace)
+        
+        toolBar.items = [flexibleSpace, doneButton]
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        <#code#>
+    }
+    
+    
+    
 }
-
-
-//  Сделать клавиатуру с тулбаром и кнопокой done

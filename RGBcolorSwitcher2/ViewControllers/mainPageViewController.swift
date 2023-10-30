@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol SettingsViewControllerDelegate {
+protocol SettingsViewControllerDelegate: AnyObject {
     func sendColorBack(with color: UIColor)
 }
 

@@ -102,6 +102,13 @@ class SettingsViewController: UIViewController {
     private func string(from slider: UISlider) -> String {
         String(format: "%.2f", slider.value)
     }
+    
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default)
+        alert.addAction(okAction)
+        present(alert, animated: true)
+    }
 }
 
 
@@ -109,7 +116,7 @@ class SettingsViewController: UIViewController {
 
 extension SettingsViewController: UITextFieldDelegate {
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         textField.inputAccessoryView = toolBar
@@ -130,10 +137,28 @@ extension SettingsViewController: UITextFieldDelegate {
         view.endEditing(true)
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        <#code#>
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        guard let text = textField.text else { return } // Проверил есть ли в ТФе текст
+        
+        if let currentValue = Float(text) {   // Создаю числовое значение которое передам в поля. Из вышестоящего текста достаю Флот
+            
+            switch textField {
+            case redTF:
+                redSlider.setValue(currentValue, animated: true)
+                setValueL(for: redLabel)
+            case greenTF:
+                greenSlider.setValue(currentValue, animated: true)
+                setValueL(for: greenLabel)
+            default:
+                greenSlider.setValue(currentValue, animated: true)
+                setValueL(for: blueLabel)
+            }
+            setColor()
+            return
+        }
+        
+        showAlert(title: "Wrong format!", message: "Please enter correct value")
     }
-    
-    
-    
+
 }

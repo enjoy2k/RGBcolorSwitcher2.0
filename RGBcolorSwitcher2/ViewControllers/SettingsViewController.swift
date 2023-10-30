@@ -30,14 +30,8 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mainView.layer.cornerRadius = 10
-        
         mainView.backgroundColor = viewColor
-        
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapGest))
-        view.addGestureRecognizer(tapGestureRecognizer)
-        
-//        Здесь нужно реализовать метод, который устанавливает слайдеры согласно цвету на мэйнВью
-        
+    
         setValueL(for: redLabel, greenLabel, blueLabel)
         setValueT(for: redTF, greenTF, blueTF)
         
@@ -97,6 +91,14 @@ class SettingsViewController: UIViewController {
             default: textField.text = string(from: blueSlider)
             }
         }
+    }
+    
+    private func setSliders() {
+        let ciColor = CIColor(color: viewColor)
+        
+        redSlider.value = Float(ciColor.red)
+        greenSlider.value = Float(ciColor.green)
+        blueSlider.value = Float(ciColor.blue)
     }
     
     private func string(from slider: UISlider) -> String {

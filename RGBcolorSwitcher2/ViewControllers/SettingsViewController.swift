@@ -22,7 +22,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var redSlider: UISlider!
     @IBOutlet weak var greenSlider: UISlider!
     @IBOutlet weak var blueSlider: UISlider!
-
+    
     var viewColor: UIColor!
     var delegate: SettingsViewControllerDelegate!
     var color: UIColor!
@@ -31,7 +31,8 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         mainView.layer.cornerRadius = 10
         mainView.backgroundColor = viewColor
-    
+        
+        setSliders()
         setValueL(for: redLabel, greenLabel, blueLabel)
         setValueT(for: redTF, greenTF, blueTF)
         
@@ -57,7 +58,7 @@ class SettingsViewController: UIViewController {
             setValueT(for: blueTF)
         }
     }
-
+    
     @IBAction func doneButtonPressed() {
         delegate.sendColorBack(with: mainView.backgroundColor ?? UIColor.white)
         dismiss(animated: true)
@@ -113,54 +114,55 @@ class SettingsViewController: UIViewController {
     }
 }
 
+  
+
 
 // MARK: Методы клавы
 
 extension SettingsViewController: UITextFieldDelegate {
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
-        textField.inputAccessoryView = toolBar
-        
-        let doneButton = UIBarButtonItem(
-            title: "Done",
-            style: .done,
-            target: self,
-            action: #selector(tapGest)
-        )
-        let flexibleSpace = UIBarButtonItem(systemItem: .flexibleSpace)
-        
-        toolBar.items = [flexibleSpace, doneButton]
-    }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         view.endEditing(true)
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
         
-        guard let text = textField.text else { return } // Проверил есть ли в ТФе текст
-        
-        if let currentValue = Float(text) {   // Создаю числовое значение которое передам в поля. Из вышестоящего текста достаю Флот
+        func textFieldDidEndEditing(_ textField: UITextField) {
             
-            switch textField {
-            case redTF:
-                redSlider.setValue(currentValue, animated: true)
-                setValueL(for: redLabel)
-            case greenTF:
-                greenSlider.setValue(currentValue, animated: true)
-                setValueL(for: greenLabel)
-            default:
-                greenSlider.setValue(currentValue, animated: true)
-                setValueL(for: blueLabel)
+            guard let text = textField.text else { return } // Проверил есть ли в ТФе текст
+            
+            if let currentValue = Float(text) {   // Создаю числовое значение которое передам в поля. Из вышестоящего текста достаю Флот
+                
+                switch textField {
+                case redTF:
+                    redSlider.setValue(currentValue, animated: true)
+                    setValueL(for: redLabel)
+                case greenTF:
+                    greenSlider.setValue(currentValue, animated: true)
+                    setValueL(for: greenLabel)
+                default:
+                    greenSlider.setValue(currentValue, animated: true)
+                    setValueL(for: blueLabel)
+                }
+                setColor()
+                return
             }
-            setColor()
-            return
+            showAlert(title: "Wrong format!", message: "Please enter correct value")
         }
         
-        showAlert(title: "Wrong format!", message: "Please enter correct value")
+        func textFieldDidBeginEditing(_ textField: UITextField) {
+            print("hello")
+            let toolBar = UIToolbar()
+            toolBar.sizeToFit()
+            textField.inputAccessoryView = toolBar
+            
+            let doneButton = UIBarButtonItem(
+                title: "Done",
+                style: .done,
+                target: self,
+                action: #selector(tapGest)
+            )
+            let flexibleSpace = UIBarButtonItem(systemItem: .flexibleSpace)
+            
+            toolBar.items = [flexibleSpace, doneButton]
+        }
     }
-
 }

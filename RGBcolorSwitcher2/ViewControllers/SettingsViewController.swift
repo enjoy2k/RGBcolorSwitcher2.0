@@ -36,6 +36,16 @@ class SettingsViewController: UIViewController {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapGest))
         view.addGestureRecognizer(tapGestureRecognizer)
         
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(tapGest))
+        let flexibleSpace = UIBarButtonItem(systemItem: .flexibleSpace)
+        toolBar.items = [flexibleSpace, doneButton]
+        redTF.inputAccessoryView = toolBar
+        greenTF.inputAccessoryView = toolBar
+        blueTF.inputAccessoryView = toolBar
+        
 //        Здесь нужно реализовать метод, который устанавливает слайдеры согласно цвету на мэйнВью
         
         setValue(for: redLabel, greenLabel, blueLabel)
@@ -65,10 +75,8 @@ class SettingsViewController: UIViewController {
     }
 
     @IBAction func doneButtonPressed() {
-        
-        delegate.sendColorBack()
-//        А обратно, по нажатии done - делегируя.
-
+        delegate.sendColorBack(with: mainView.backgroundColor ?? UIColor.white)
+        dismiss(animated: true)
     }
     
     private func setColor() {

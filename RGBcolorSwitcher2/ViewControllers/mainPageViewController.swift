@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SettingsViewControllerDelegate {
-    func sendColorBack()
+    func sendColorBack(with color: UIColor)
 }
 
 class mainPageViewController: UIViewController {
@@ -22,16 +22,17 @@ class mainPageViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let settingsVC = segue.destination as? SettingsViewController else { return }
-        
         settingsVC.viewColor = view.backgroundColor
         settingsVC.delegate = self
+        
+//         Сделать так чтобы слайдеры вставали в нужное положение
     }
 }
 
 extension mainPageViewController: SettingsViewControllerDelegate {
-    func sendColorBack() {
-        print("hello")
-        
+    func sendColorBack(with color: UIColor) {
+        view.backgroundColor = color
     }
+    
     
 }

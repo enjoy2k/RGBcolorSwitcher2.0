@@ -48,8 +48,8 @@ class SettingsViewController: UIViewController {
         
 //        Здесь нужно реализовать метод, который устанавливает слайдеры согласно цвету на мэйнВью
         
-        setValue(for: redLabel, greenLabel, blueLabel)
-        setValue(for: redTF, greenTF, blueTF)
+        setValueL(for: redLabel, greenLabel, blueLabel)
+        setValueT(for: redTF, greenTF, blueTF)
         
     }
     
@@ -63,14 +63,14 @@ class SettingsViewController: UIViewController {
         
         switch sender {
         case redSlider:
-            redLabel.text = string(from: redSlider)
-            redTF.text = string(from: redSlider)
+            setValueL(for: redLabel)
+            setValueT(for: redTF)
         case greenSlider:
-            greenLabel.text = string(from: greenSlider)
-            greenTF.text = string(from: greenSlider)
+            setValueL(for: greenLabel)
+            setValueT(for: greenTF)
         default:
-            blueLabel.text = string(from: blueSlider)
-            blueTF.text = string(from: blueSlider)
+            setValueL(for: blueLabel)
+            setValueT(for: blueTF)
         }
     }
 
@@ -88,7 +88,7 @@ class SettingsViewController: UIViewController {
         )
     }
     
-    private func setValue(for labels: UILabel...) {
+    private func setValueL(for labels: UILabel...) {
         labels.forEach { label in
             
             switch label {
@@ -98,7 +98,7 @@ class SettingsViewController: UIViewController {
             }
         }
     }
-    private func setValue(for textFields: UITextField...) {
+    private func setValueT(for textFields: UITextField...) {
         textFields.forEach { textField in
             
             switch textField {

@@ -137,7 +137,7 @@ extension SettingsViewController {
                     greenSlider.setValue(currentValue, animated: true)
                     setValue(for: greenLabel)
                 default:
-                    greenSlider.setValue(currentValue, animated: true)
+                    blueSlider.setValue(currentValue, animated: true)
                     setValue(for: blueLabel)
                 }
                 setColor()

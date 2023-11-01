@@ -23,6 +23,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet var greenTF: UITextField!
     @IBOutlet var blueTF: UITextField!
     
+//    MARK: - Public properties
     var delegate: SettingsViewControllerDelegate?
     var viewColor: UIColor!
     
@@ -37,6 +38,7 @@ class SettingsViewController: UIViewController {
         setValue(for: redTF, greenTF, blueTF)
     }
     
+//    MARK: - IB Actions
     @IBAction func rgbSlider(_ sender: UISlider) {
         
         switch sender {
@@ -156,13 +158,13 @@ extension SettingsViewController {
                 barButtonSystemItem: .done,
                 target: self,
                 action: #selector(didTapDone)
-                )
+            )
             
             let flexibleButton = UIBarButtonItem(
                 barButtonSystemItem: .flexibleSpace,
                 target: nil,
                 action: nil
-                )
+            )
             
             keyBoardToolBar.items = [flexibleButton, doneButton]
         }

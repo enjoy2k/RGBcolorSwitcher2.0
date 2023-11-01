@@ -14,10 +14,6 @@ protocol SettingsViewControllerDelegate: AnyObject {
 
 class ColorfulViewController: UIViewController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let settingsVC = segue.destination as? SettingsViewController else { return }
         settingsVC.delegate = self
@@ -25,6 +21,7 @@ class ColorfulViewController: UIViewController {
     }
 }
 
+// MARK: - ColorDelegate
 extension ColorfulViewController: SettingsViewControllerDelegate {
     func setColorForBigView(with color: UIColor) {
         view.backgroundColor = color
